@@ -106,7 +106,7 @@ class AMISComponent extends React.Component<any, any> {
         type: 'page',
         body: {
           type: 'crud',
-          api: 'post:/api/user/page',
+          api: 'get:/api/user/page',
           headerToolbar: ['bulkActions', 'reload'],
           bulkActions: [
             {
@@ -114,8 +114,9 @@ class AMISComponent extends React.Component<any, any> {
               actionType: 'ajax',
               api: 'delete:/api/user/${ids}',
               confirmText: '确定要批量删除?'
-            },
+            }
           ],
+          autoGenerateFilter: true,
           syncLocation: false,
           columns: [
             {
@@ -124,7 +125,13 @@ class AMISComponent extends React.Component<any, any> {
             },
             {
               name: 'name',
-              label: '用户名'
+              label: '用户名',
+              searchable: {
+                type: 'input-text',
+                name: 'name',
+                label: '用户名',
+                placeholder: '输入用户名'
+              }
             },
             {
               name: 'password',
