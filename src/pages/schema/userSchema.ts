@@ -1,7 +1,6 @@
 export default {
   type: 'page',
   body: [
-    ,
     {
       type: 'crud',
       api: 'get:/api/user/page',
