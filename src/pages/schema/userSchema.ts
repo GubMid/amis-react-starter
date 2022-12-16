@@ -41,7 +41,12 @@ export default {
           }
         },
         'bulkActions',
-        'export-excel',
+        // 导出按钮 在打包后有效
+        {
+          type: 'export-excel',
+          label: '全量导出 CSV',
+          api: '/api/user/list'
+        },
         {
           type: 'columns-toggler',
           align: 'right',
