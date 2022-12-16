@@ -12,6 +12,7 @@ import copy from 'copy-to-clipboard';
 
 import {render as renderAmis, ToastComponent, AlertComponent} from 'amis';
 import {alert, confirm, toast} from 'amis-ui';
+import pages from './pages';
 
 // amis 环境配置
 const env = {
@@ -103,144 +104,16 @@ class AMISComponent extends React.Component<any, any> {
     return renderAmis(
       // 这里是 amis 的 Json 配置。
       {
-        type: 'page',
-        body: [
-          {
-            label: '新增',
-            type: 'button',
-            actionType: 'dialog',
-            level: 'primary',
-            className: 'm-b-sm',
-            dialog: {
-              title: '新增表单',
-              body: {
-                type: 'form',
-                api: 'post:/api/user',
-                body: [
-                  {
-                    type: 'input-text',
-                    name: 'name',
-                    label: '用户名'
-                  },
-                  {
-                    type: 'input-password',
-                    name: 'password',
-                    label: '密码'
-                  },
-                  {
-                    type: 'input-number',
-                    name: 'store_id',
-                    label: '所属店铺'
-                  },
-                  {
-                    type: 'input-number',
-                    name: 'dept_id',
-                    label: '所属部门'
-                  }
-                ]
-              }
-            }
-          },
-          {
-            type: 'crud',
-            api: 'get:/api/user/page',
-            headerToolbar: [
-              "export-csv",
-              'bulkActions',
-            ],
-            bulkActions: [
-              {
-                label: '批量删除',
-                actionType: 'ajax',
-                api: 'delete:/api/user/${ids}',
-                confirmText: '确定要批量删除?'
-              }
-            ],
-            autoGenerateFilter: true,
-            syncLocation: false,
-            columns: [
-              {
-                label: '序号',
-                type: 'tpl',
-                tpl: '${index + 1}'
-              },
-              {
-                name: 'name',
-                label: '用户名',
-                searchable: {
-                  type: 'input-text',
-                  name: 'name',
-                  label: '用户名',
-                  placeholder: '输入用户名'
-                }
-              },
-              {
-                name: 'password',
-                label: '密码',
-                type: 'input-password',
-                static: true
-              },
-              {
-                name: 'store_id',
-                label: '所属店仓'
-              },
-              {
-                name: 'dept_id',
-                label: '所属部门'
-              },
-              {
-                type: 'operation',
-                label: '操作',
-                buttons: [
-                  {
-                    label: '详情',
-                    type: 'button',
-                    level: 'link',
-                    actionType: 'dialog',
-                    dialog: {
-                      title: '查看详情',
-                      body: {
-                        type: 'form',
-                        api: 'post:/api/user',
-                        body: [
-                          {
-                            type: 'input-text',
-                            name: 'name',
-                            label: '用户名'
-                          },
-                          {
-                            type: 'input-password',
-                            name: 'password',
-                            label: '密码'
-                          },
-                          {
-                            type: 'input-number',
-                            name: 'store_id',
-                            label: '所属店铺'
-                          },
-                          {
-                            type: 'input-number',
-                            name: 'dept_id',
-                            label: '所属部门'
-                          }
-                        ]
-                      }
-                    }
-                  },
-                  {
-                    label: '删除',
-                    type: 'button',
-                    level: 'link',
-                    className: 'text-danger',
-                    confirmText: '确认要删除？',
-                    actionType: 'ajax',
-                    api: 'delete:/api/user/${id}'
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+        type: 'app',
+        brandName: '管理系统',
+        logo: '/logo.png',
+        header: {
+          type: 'tpl',
+          inline: false,
+          className: 'w-full',
+          tpl: '<div class="flex justify-between"><div>顶部区域左侧</div><div>顶部区域右侧</div></div>'
+        },
+        pages
       },
       {
         // props...
