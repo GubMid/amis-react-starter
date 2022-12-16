@@ -44,7 +44,7 @@ export default {
         // 导出按钮 在打包后有效
         {
           type: 'export-excel',
-          label: '全量导出 CSV',
+          label: '导出Excel',
           api: '/api/user/list'
         },
         {
