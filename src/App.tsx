@@ -104,110 +104,149 @@ class AMISComponent extends React.Component<any, any> {
       // 这里是 amis 的 Json 配置。
       {
         type: 'page',
-        body: {
-          type: 'crud',
-          api: 'get:/api/user/page',
-          headerToolbar: ['bulkActions', 'reload'],
-          bulkActions: [
-            {
-              label: '批量删除',
-              actionType: 'ajax',
-              api: 'delete:/api/user/${ids}',
-              confirmText: '确定要批量删除?'
+        body: [
+          {
+            label: '新增',
+            type: 'button',
+            actionType: 'dialog',
+            level: 'primary',
+            className: 'm-b-sm',
+            dialog: {
+              title: '新增表单',
+              body: {
+                type: 'form',
+                api: 'post:/api/user',
+                body: [
+                  {
+                    type: 'input-text',
+                    name: 'name',
+                    label: '用户名'
+                  },
+                  {
+                    type: 'input-password',
+                    name: 'password',
+                    label: '密码'
+                  },
+                  {
+                    type: 'input-number',
+                    name: 'store_id',
+                    label: '所属店铺'
+                  },
+                  {
+                    type: 'input-number',
+                    name: 'dept_id',
+                    label: '所属部门'
+                  }
+                ]
+              }
             }
-          ],
-          autoGenerateFilter: true,
-          syncLocation: false,
-          columns: [
-            {
-              label: '序号',
-              type: 'tpl',
-              tpl: '${index + 1}'
-
-            },
-            {
-              name: 'name',
-              label: '用户名',
-              searchable: {
-                type: 'input-text',
+          },
+          {
+            type: 'crud',
+            api: 'get:/api/user/page',
+            headerToolbar: ['bulkActions', 'reload'],
+            bulkActions: [
+              {
+                label: '批量删除',
+                actionType: 'ajax',
+                api: 'delete:/api/user/${ids}',
+                confirmText: '确定要批量删除?'
+              }
+            ],
+            autoGenerateFilter: true,
+            syncLocation: false,
+            columns: [
+              {
+                label: '序号',
+                type: 'tpl',
+                tpl: '${index + 1}'
+              },
+              {
                 name: 'name',
                 label: '用户名',
-                placeholder: '输入用户名'
-              }
-            },
-            {
-              name: 'password',
-              label: '密码'
-            },
-            {
-              name: 'store_id',
-              label: '所属店仓'
-            },
-            {
-              name: 'dept_id',
-              label: '所属部门'
-            },
-            {
-              type: 'operation',
-              label: '操作',
-              buttons: [
-                {
-                  label: '详情',
-                  type: 'button',
-                  level: 'link',
-                  actionType: 'dialog',
-                  dialog: {
-                    title: '查看详情',
-                    body: {
-                      type: 'form',
-                      body: [
-                        {
-                          type: 'input-text',
-                          name: 'engine',
-                          label: 'Engine'
-                        },
-                        {
-                          type: 'input-text',
-                          name: 'browser',
-                          label: 'Browser'
-                        },
-                        {
-                          type: 'input-text',
-                          name: 'platform',
-                          label: 'platform'
-                        },
-                        {
-                          type: 'input-text',
-                          name: 'version',
-                          label: 'version'
-                        },
-                        {
-                          type: 'control',
-                          label: 'grade',
-                          body: {
-                            type: 'tag',
-                            label: '${grade}',
-                            displayMode: 'normal',
-                            color: 'active'
-                          }
-                        }
-                      ]
-                    }
-                  }
-                },
-                {
-                  label: '删除',
-                  type: 'button',
-                  level: 'link',
-                  className: 'text-danger',
-                  confirmText: '确认要删除？',
-                  actionType: 'ajax',
-                  api: 'delete:/api/user/${id}'
+                searchable: {
+                  type: 'input-text',
+                  name: 'name',
+                  label: '用户名',
+                  placeholder: '输入用户名'
                 }
-              ]
-            }
-          ]
-        }
+              },
+              {
+                name: 'password',
+                label: '密码',
+                type: 'input-password',
+                static: true
+              },
+              {
+                name: 'store_id',
+                label: '所属店仓'
+              },
+              {
+                name: 'dept_id',
+                label: '所属部门'
+              },
+              {
+                type: 'operation',
+                label: '操作',
+                buttons: [
+                  {
+                    label: '详情',
+                    type: 'button',
+                    level: 'link',
+                    actionType: 'dialog',
+                    dialog: {
+                      title: '查看详情',
+                      body: {
+                        type: 'form',
+                        body: [
+                          {
+                            type: 'input-text',
+                            name: 'engine',
+                            label: 'Engine'
+                          },
+                          {
+                            type: 'input-text',
+                            name: 'browser',
+                            label: 'Browser'
+                          },
+                          {
+                            type: 'input-text',
+                            name: 'platform',
+                            label: 'platform'
+                          },
+                          {
+                            type: 'input-text',
+                            name: 'version',
+                            label: 'version'
+                          },
+                          {
+                            type: 'control',
+                            label: 'grade',
+                            body: {
+                              type: 'tag',
+                              label: '${grade}',
+                              displayMode: 'normal',
+                              color: 'active'
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    label: '删除',
+                    type: 'button',
+                    level: 'link',
+                    className: 'text-danger',
+                    confirmText: '确认要删除？',
+                    actionType: 'ajax',
+                    api: 'delete:/api/user/${id}'
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         // props...
