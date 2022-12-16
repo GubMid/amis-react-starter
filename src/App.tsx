@@ -144,7 +144,9 @@ class AMISComponent extends React.Component<any, any> {
           {
             type: 'crud',
             api: 'get:/api/user/page',
-            headerToolbar: ['bulkActions', 'reload'],
+            headerToolbar: [
+              'bulkActions',
+            ],
             bulkActions: [
               {
                 label: '批量删除',
@@ -198,36 +200,27 @@ class AMISComponent extends React.Component<any, any> {
                       title: '查看详情',
                       body: {
                         type: 'form',
+                        api: 'post:/api/user',
                         body: [
                           {
                             type: 'input-text',
-                            name: 'engine',
-                            label: 'Engine'
+                            name: 'name',
+                            label: '用户名'
                           },
                           {
-                            type: 'input-text',
-                            name: 'browser',
-                            label: 'Browser'
+                            type: 'input-password',
+                            name: 'password',
+                            label: '密码'
                           },
                           {
-                            type: 'input-text',
-                            name: 'platform',
-                            label: 'platform'
+                            type: 'input-number',
+                            name: 'store_id',
+                            label: '所属店铺'
                           },
                           {
-                            type: 'input-text',
-                            name: 'version',
-                            label: 'version'
-                          },
-                          {
-                            type: 'control',
-                            label: 'grade',
-                            body: {
-                              type: 'tag',
-                              label: '${grade}',
-                              displayMode: 'normal',
-                              color: 'active'
-                            }
+                            type: 'input-number',
+                            name: 'dept_id',
+                            label: '所属部门'
                           }
                         ]
                       }
