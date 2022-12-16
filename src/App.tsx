@@ -120,8 +120,10 @@ class AMISComponent extends React.Component<any, any> {
           syncLocation: false,
           columns: [
             {
-              name: 'id',
-              label: 'ID'
+              label: '序号',
+              type: 'tpl',
+              tpl: '${index + 1}'
+
             },
             {
               name: 'name',
