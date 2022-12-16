@@ -1,46 +1,57 @@
 export default {
   type: 'page',
   body: [
-    {
-      label: '新增',
-      type: 'button',
-      actionType: 'dialog',
-      level: 'primary',
-      className: 'm-b-sm',
-      dialog: {
-        title: '新增表单',
-        body: {
-          type: 'form',
-          api: 'post:/api/user',
-          body: [
-            {
-              type: 'input-text',
-              name: 'name',
-              label: '用户名'
-            },
-            {
-              type: 'input-password',
-              name: 'password',
-              label: '密码'
-            },
-            {
-              type: 'input-number',
-              name: 'store_id',
-              label: '所属店铺'
-            },
-            {
-              type: 'input-number',
-              name: 'dept_id',
-              label: '所属部门'
-            }
-          ]
-        }
-      }
-    },
+    ,
     {
       type: 'crud',
       api: 'get:/api/user/page',
-      headerToolbar: ['export-csv', 'bulkActions'],
+      headerToolbar: [
+        {
+          label: '新增',
+          type: 'button',
+          actionType: 'dialog',
+          level: 'primary',
+          dialog: {
+            title: '新增表单',
+            body: {
+              type: 'form',
+              api: 'post:/api/user',
+              body: [
+                {
+                  type: 'input-text',
+                  name: 'name',
+                  label: '用户名'
+                },
+                {
+                  type: 'input-password',
+                  name: 'password',
+                  label: '密码'
+                },
+                {
+                  type: 'input-number',
+                  name: 'store_id',
+                  label: '所属店铺'
+                },
+                {
+                  type: 'input-number',
+                  name: 'dept_id',
+                  label: '所属部门'
+                }
+              ]
+            }
+          }
+        },
+        'bulkActions',
+        'export-csv',
+        {
+          type: 'columns-toggler',
+          align: 'right',
+          draggable: true,
+          icon: 'fas fa-cog',
+          overlay: true,
+          footerBtnSize: 'sm'
+        }
+      ],
       bulkActions: [
         {
           label: '批量删除',
@@ -50,7 +61,6 @@ export default {
         }
       ],
       autoGenerateFilter: true,
-      syncLocation: false,
       columns: [
         {
           label: '序号',

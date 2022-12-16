@@ -62,24 +62,24 @@ const env = {
   copy: (content: string) => {
     copy(content);
     toast.success('内容已复制到粘贴板');
-  }
+  },
 
   // 后面这些接口可以不用实现
 
   // 默认是地址跳转
-  // jumpTo: (
-  //   location: string /*目标地址*/,
-  //   action: any /* action对象*/
-  // ) => {
-  //   // 用来实现页面跳转, actionType:link、url 都会进来。
-  // },
+  jumpTo: (
+    location: string /*目标地址*/,
+    action: any /* action对象*/
+  ) => {
+    // 用来实现页面跳转, actionType:link、url 都会进来。
+  },
 
-  // updateLocation: (
-  //   location: string /*目标地址*/,
-  //   replace: boolean /*是replace，还是push？*/
-  // ) => {
-  //   // 地址替换，跟 jumpTo 类似
-  // },
+  updateLocation: (
+    location: string /*目标地址*/,
+    replace: boolean /*是replace，还是push？*/
+  ) => {
+    // 地址替换，跟 jumpTo 类似
+  },
 
   // isCurrentUrl: (
   //   url: string /*url地址*/,
