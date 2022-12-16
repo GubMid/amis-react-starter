@@ -42,7 +42,7 @@ export default {
           }
         },
         'bulkActions',
-        'export-csv',
+        'export-excel',
         {
           type: 'columns-toggler',
           align: 'right',

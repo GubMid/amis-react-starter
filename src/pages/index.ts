@@ -1,4 +1,4 @@
-import userSchema from './schema/useSchema';
+import userSchema from './schema/userSchema';
 export default [
   {
     label: '系统管理',
