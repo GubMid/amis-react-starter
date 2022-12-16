@@ -145,6 +145,7 @@ class AMISComponent extends React.Component<any, any> {
             type: 'crud',
             api: 'get:/api/user/page',
             headerToolbar: [
+              "export-csv",
               'bulkActions',
             ],
             bulkActions: [
