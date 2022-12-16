@@ -105,28 +105,97 @@ class AMISComponent extends React.Component<any, any> {
       {
         type: 'page',
         body: {
-          type: 'form',
-          api: '/api/form',
-          body: [
+          type: 'crud',
+          api: 'post:/api/user/page',
+          headerToolbar: ['bulkActions', 'reload'],
+          bulkActions: [
             {
-              type: 'input-text',
+              label: '批量删除',
+              actionType: 'ajax',
+              api: 'delete:/api/user/${ids}',
+              confirmText: '确定要批量删除?'
+            },
+          ],
+          syncLocation: false,
+          columns: [
+            {
+              name: 'id',
+              label: 'ID'
+            },
+            {
               name: 'name',
-              label: '姓名'
+              label: '用户名'
             },
             {
-              name: 'email',
-              type: 'input-email',
-              label: '邮箱'
+              name: 'password',
+              label: '密码'
             },
             {
-              name: 'color',
-              type: 'input-color',
-              label: 'color'
+              name: 'store_id',
+              label: '所属店仓'
             },
             {
-              type: 'editor',
-              name: 'editor',
-              label: '编辑器'
+              name: 'dept_id',
+              label: '所属部门'
+            },
+            {
+              type: 'operation',
+              label: '操作',
+              buttons: [
+                {
+                  label: '详情',
+                  type: 'button',
+                  level: 'link',
+                  actionType: 'dialog',
+                  dialog: {
+                    title: '查看详情',
+                    body: {
+                      type: 'form',
+                      body: [
+                        {
+                          type: 'input-text',
+                          name: 'engine',
+                          label: 'Engine'
+                        },
+                        {
+                          type: 'input-text',
+                          name: 'browser',
+                          label: 'Browser'
+                        },
+                        {
+                          type: 'input-text',
+                          name: 'platform',
+                          label: 'platform'
+                        },
+                        {
+                          type: 'input-text',
+                          name: 'version',
+                          label: 'version'
+                        },
+                        {
+                          type: 'control',
+                          label: 'grade',
+                          body: {
+                            type: 'tag',
+                            label: '${grade}',
+                            displayMode: 'normal',
+                            color: 'active'
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  label: '删除',
+                  type: 'button',
+                  level: 'link',
+                  className: 'text-danger',
+                  confirmText: '确认要删除？',
+                  actionType: 'ajax',
+                  api: 'delete:/api/user/${id}'
+                }
+              ]
             }
           ]
         }
